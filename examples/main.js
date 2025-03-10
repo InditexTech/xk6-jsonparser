@@ -8,32 +8,43 @@ export const options = {
 
 export default function () {
 
-  group("JSON Marshal & Unmarshal", function () {
+  group("JSON Marshal", function () {
     const sourceObj = {
-      "name": "John",
+      "name": "Xacobe",
       "age": 30,
-      "city": "New York",
+      "city": "Arteixo",
     };
 
     const marshalResult = json.marshal(sourceObj); // JSON string
-    const unmarshalResult = json.unmarshal(marshalResult); // JavaScript object (equals to `source`)
-
     console.log("Marshal result:", marshalResult);
-    console.log("Unmarshal result:", unmarshalResult);
 
     check(marshalResult, {
       "Marshal should return a string": (r) => typeof r === "string",
+      "The marshalled object should contain the sourceObj properties": (r) => {
+        const obj = JSON.parse(r);
+        return obj.name === sourceObj.name && obj.age === sourceObj.age && obj.city === sourceObj.city;
+      },
     });
+  });
+
+
+  group("JSON Unmarshal", function () {
+    const sourceJson = `{"name":"Uxia","age":32,"city":"Santiago de Compostela"}`;
+
+    const unmarshalResult = json.unmarshal(sourceJson); // JSON Object
+    console.log("Unmarshal result:", unmarshalResult);
 
     check(unmarshalResult, {
-      "Unmarshal should return a JavaScript object": (r) => typeof r === "object",
-      "The unmarshalled object should be equal to the source object": (r) => r.name === sourceObj.name && r.age === sourceObj.age && r.city === sourceObj.city,
+      "Unmarshal should return an object": (r) => typeof r === "object",
+      "The unmarshalled object should contain the sourceJson properties": (r) => {
+        return r.name === "Uxia" && r.age === 32 && r.city === "Santiago de Compostela";
+      },
     });
   });
 
 
   group("Unmarshal failures", function () {
-    const invalidJSON = "{name: 'John', age: 30, city: 'New York'}";
+    const invalidJSON = `{"name": "Brais", "age": 30`; // Missing closing bracket
     const unmarshalResult = json.unmarshal(invalidJSON); // null
 
     console.log("Unmarshal Failure result:", unmarshalResult);
@@ -53,7 +64,7 @@ export default function () {
     //Add circular reference to create invalid JSON
     sourceObj.circularReference = sourceObj;
 
-    const marshalResult = json.marshal(sourceObj); // null
+    const marshalResult = json.marshal(sourceObj); // empty string
 
     console.log("Marshal Failure result:", marshalResult);
     check(marshalResult, {
