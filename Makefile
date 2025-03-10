@@ -26,7 +26,7 @@ deps:
 
 build: deps
 	@echo "Building k6 with jsonparser extension..."
-	@xk6 build --with github.com/inditex/xk6-jsonparser=.
+	@xk6 build --with github.com/InditexTech/xk6-jsonparser=.
 
 run: deps
 	@echo "Running example..."

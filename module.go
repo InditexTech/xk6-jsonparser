@@ -1,7 +1,7 @@
 package xk6_jsonparser
 
 import (
-	"github.com/inditex/xk6-jsonparser/pkg/jsonparser"
+	"github.com/InditexTech/xk6-jsonparser/pkg/jsonparser"
 	"go.k6.io/k6/js/modules"
 )
 

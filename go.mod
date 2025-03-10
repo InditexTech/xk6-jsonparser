@@ -1,4 +1,4 @@
-module github.com/inditex/xk6-jsonparser
+module github.com/InditexTech/xk6-jsonparser
 
 go 1.23.3
 
