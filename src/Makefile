@@ -32,7 +32,7 @@ run: deps
 	@echo "Running example..."
 	@xk6 run ../examples/main.js
 
-verify: format lint test
+verify: format lint test run
 	@echo "Running verify..."
 
 test:
