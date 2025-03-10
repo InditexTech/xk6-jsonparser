@@ -4,11 +4,10 @@ XK6_BINARY := $(shell command -v xk6 2> /dev/null)
 GOLANGCI_VERSION := v1.64.5
 GOLANGCI_BINARY := $(shell command -v golangci-lint 2> /dev/null)
 
-# Targets
-.PHONY: all build run test tidy deps lint format
-
+.PHONY: all
 all: format lint test run
 
+.PHONY: deps
 deps:
 	@if [ -z "$(XK6_BINARY)" ]; then \
 		echo "Installing xk6..."; \
@@ -24,29 +23,36 @@ deps:
 		echo "golangci-lint is already installed."; \
 	fi
 
+.PHONY: build
 build: deps
 	@echo "Building k6 with jsonparser extension..."
 	@xk6 build --with github.com/InditexTech/xk6-jsonparser=.
 
+.PHONY: run
 run: deps
 	@echo "Running example..."
 	@xk6 run ./examples/main.js
 
+.PHONY: verify
 verify: format lint test run
 	@echo "Running verify..."
 
+.PHONY: test
 test:
 	@echo "Running unit tests..."
 	@go clean -testcache && go test ./...
 
+.PHONY: tidy
 tidy:
 	@echo "Running go mod tidy..."
 	@go mod tidy
 
+.PHONY: format
 format:
 	@echo "Running go fmt..."
 	go fmt ./...
 
+.PHONY: lint
 lint: deps
 	@echo "Running golangci-lint..."
 	@golangci-lint run
