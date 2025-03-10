@@ -1,4 +1,4 @@
-package code
+package xk6_jsonparser
 
 import (
 	"github.com/inditex/xk6-jsonparser/pkg/jsonparser"

@@ -7,14 +7,12 @@ The `xk6-jsonparser` is a plugin for the k6 load testing tool that allows JSON m
 ### Pre-built binaries
 
 ```bash
-cd src
 make run
 ```
 
 ### Build from source
 
 ```bash
-cd src
 make build
 ```
 
