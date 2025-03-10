@@ -5,9 +5,9 @@ GOLANGCI_VERSION := v1.64.5
 GOLANGCI_BINARY := $(shell command -v golangci-lint 2> /dev/null)
 
 # Targets
-.PHONY: all build run test tidy deps compose-up compose-down lint format
+.PHONY: all build run test tidy deps lint format
 
-all: format lint compose-up test run compose-down
+all: format lint test run
 
 deps:
 	@if [ -z "$(XK6_BINARY)" ]; then \
@@ -24,21 +24,13 @@ deps:
 		echo "golangci-lint is already installed."; \
 	fi
 
-compose-up:
-	@echo "Starting sftp server..."
-	@docker-compose -f docker/docker-compose.yaml up -d
-
-compose-down:
-	@echo "Destrying sftp server..."
-	@docker-compose -f docker/docker-compose.yaml down
-
 build: deps
-	@echo "Building k6  with STP extension..."
-	@xk6 build --with github.com/inditex/xk6-sftp=.
+	@echo "Building k6 with jsonparser extension..."
+	@xk6 build --with github.com/inditex/xk6-jsonparser=.
 
-run: deps compose-up
+run: deps
 	@echo "Running example..."
-	@xk6 run --vus 3 --duration 1m ./examples/main.js
+	@xk6 run --vus 1 --duration 10s ../examples/main.js
 
 verify: format lint test
 	@echo "Running verify..."
@@ -46,12 +38,6 @@ verify: format lint test
 test:
 	@echo "Running unit tests..."
 	@go clean -testcache && go test ./...
-
-it-test: deps compose-up integration compose-down
-
-integration: deps
-	@echo "Running integration tests..."
-	@go test -tags=integration ./...
 
 tidy:
 	@echo "Running go mod tidy..."
