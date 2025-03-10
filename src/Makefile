@@ -30,7 +30,7 @@ build: deps
 
 run: deps
 	@echo "Running example..."
-	@xk6 run --vus 1 --duration 10s ../examples/main.js
+	@xk6 run ../examples/main.js
 
 verify: format lint test
 	@echo "Running verify..."

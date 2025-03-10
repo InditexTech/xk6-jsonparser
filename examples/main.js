@@ -1,6 +1,5 @@
-import { check } from 'k6';
-import json from "k6/x/json"
-import { expect } from "./k6chaijs.js";
+import { group, check } from 'k6';
+import json from "k6/x/json";
 
 export const options = {
   iterations: 1,
@@ -8,32 +7,58 @@ export const options = {
 };
 
 export default function () {
-  let data = '{"key1":"valorParaKey1String", "key2":true, "key3": 1}'
-  let objectParsed = json.unmarshal(data)
 
-  check(json.unmarshal(data), {'is valid JSON Key2 Value': (d) => d.key2,});
+  group("JSON Marshal & Unmarshal", function () {
+    const sourceObj = {
+      "name": "John",
+      "age": 30,
+      "city": "New York",
+    };
 
-  //Invalid JSON String
-  let badData = '<html>"key1":"valorParaKey1String"</html>'
-  let objectBadParsed = json.unmarshal(badData)
-  //null is returned
-  expect(objectBadParsed).to.equal(null)
+    const marshalResult = json.marshal(sourceObj); // JSON string
+    const unmarshalResult = json.unmarshal(marshalResult); // JavaScript object (equals to `source`)
 
-  let objectData  = {
-    id: "id",
-    name: "SRE",
-    age: 30,
-    email: "test@inditex.com",
-    url: "https://www.inditex.com&date=2021-09-01T00:00:00Z"
-  };
+    console.log("Marshal result:", marshalResult);
+    console.log("Unmarshal result:", unmarshalResult);
 
-  let objectJson = json.marshal(objectData)
-  let correctJson = `{"age":30,"email":"test@inditex.com","id":"id","name":"SRE","url":"https://www.inditex.com&date=2021-09-01T00:00:00Z"}\n`
-  expect(objectJson).to.equal(correctJson)
+    check(marshalResult, {
+      "Marshal should return a string": (r) => typeof r === "string",
+    });
 
-  //Add circular reference to create invalid JSON
-  objectData.circularReference = objectData;
-  let objectBagJson = json.marshal(objectData)
-  //empty string is returned
-  expect(objectBagJson).to.equal(``)
+    check(unmarshalResult, {
+      "Unmarshal should return a JavaScript object": (r) => typeof r === "object",
+      "The unmarshalled object should be equal to the source object": (r) => r.name === sourceObj.name && r.age === sourceObj.age && r.city === sourceObj.city,
+    });
+  });
+
+
+  group("Unmarshal failures", function () {
+    const invalidJSON = "{name: 'John', age: 30, city: 'New York'}";
+    const unmarshalResult = json.unmarshal(invalidJSON); // null
+
+    console.log("Unmarshal Failure result:", unmarshalResult);
+    check(unmarshalResult, {
+      "Unmarshal with invalid JSON should return null": (r) => r === null,
+    });
+  });
+
+
+  group("Marshal failures", function () {
+    const sourceObj = {
+      "name": "John",
+      "age": 30,
+      "city": "New York"
+    }
+
+    //Add circular reference to create invalid JSON
+    sourceObj.circularReference = sourceObj;
+
+    const marshalResult = json.marshal(sourceObj); // null
+
+    console.log("Marshal Failure result:", marshalResult);
+    check(marshalResult, {
+      "Marshal with circular reference should return empty string": (r) => r === "",
+    });
+  });
+
 }
