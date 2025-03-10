@@ -1,2 +1,30 @@
 # xk6-jsonparser
-xk6 json parser extension
+
+The `xk6-jsonparser` is a plugin for the k6 load testing tool that allows JSON marshal & unmarshal in Go.
+
+## Install
+
+### Pre-built binaries
+
+```bash
+cd src
+make run
+```
+
+### Build from source
+
+```bash
+cd src
+make build
+```
+
+## API
+
+The plugin provides two methods:
+
+- `marshal`: convert a JavaScript object to a JSON string. When the operation fails, the output is an empty string.
+- `unmarshal`: convert a JSON string to a JavaScript object. When the operation fails, the output is a null value.
+
+### Examples
+
+See the [examples](./examples) folder.
