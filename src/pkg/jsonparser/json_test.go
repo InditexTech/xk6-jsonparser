@@ -32,7 +32,18 @@ func TestJSON_Unmarshal_should_return_nil(t *testing.T) {
 	t.Parallel()
 	r := unmarshal(`{"operation": "get", `)
 	fmt.Println(r)
-	assert.Nil(t, r, "The code not return nill")
+	assert.Nil(t, r, "The code not return nil")
+}
+
+func TestJSON_Unmarshal(t *testing.T) {
+	t.Parallel()
+	expected := map[string]interface{}{
+		"operation": "get",
+		"key":       "example",
+	}
+	r := unmarshal(`{"operation": "get", "key": "example"}`)
+	fmt.Println(r)
+	assert.Equal(t, expected, r)
 }
 
 func TestJSON_Marshal(t *testing.T) {
