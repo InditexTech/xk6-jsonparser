@@ -2,7 +2,7 @@ package json
 
 import (
 	"bytes"
-	"encoding/json"
+	"github.com/goccy/go-json"
 
 	"github.com/grafana/sobek"
 	"github.com/sirupsen/logrus"
