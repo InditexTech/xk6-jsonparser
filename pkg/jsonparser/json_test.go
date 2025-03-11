@@ -16,25 +16,6 @@ type Employee struct {
 	Age     int
 }
 
-func TestUnmarshal(t *testing.T) {
-	t.Parallel()
-	r := unmarshal(`{"operation": "get", "key": "example"}`)
-	fmt.Println(r)
-	require.NotNil(t, r)
-}
-
-func TestJSON_Unmarshal_should_not_return_error(t *testing.T) {
-	t.Parallel()
-	assert.NotPanics(t, func() { unmarshal(`{"operation": "get", `) }, "The code throw panic")
-}
-
-func TestJSON_Unmarshal_should_return_nil(t *testing.T) {
-	t.Parallel()
-	r := unmarshal(`{"operation": "get", `)
-	fmt.Println(r)
-	assert.Nil(t, r, "The code not return nil")
-}
-
 func TestJSON_Unmarshal(t *testing.T) {
 	t.Parallel()
 	expected := map[string]interface{}{
@@ -44,6 +25,16 @@ func TestJSON_Unmarshal(t *testing.T) {
 	r := unmarshal(`{"operation": "get", "key": "example"}`)
 	fmt.Println(r)
 	assert.Equal(t, expected, r)
+}
+
+func TestJSON_Unmarshal_error(t *testing.T) {
+	t.Parallel()
+	var result any
+
+	assert.NotPanics(t, func() {
+		result = unmarshal(`{"operation": "get", `)
+	}, "The code throw panic")
+	assert.Nil(t, result, "The code does not return nil")
 }
 
 func TestJSON_Marshal(t *testing.T) {
@@ -74,19 +65,15 @@ func TestJSON_Marshal_ScapeHtml(t *testing.T) {
 	}
 }
 
-func TestJSON_Marshal_should_not_return_error(t *testing.T) {
+func TestJSON_Marshal_error(t *testing.T) {
+	t.Parallel()
 	var unsupportedValues = []any{
 		math.NaN(),
 	}
-	t.Parallel()
-	assert.NotPanics(t, func() { marshal(unsupportedValues[0]) }, "The code throw panic")
-}
 
-func TestJSON_Marshal_should_return_empty_string(t *testing.T) {
-	var unsupportedValues = []any{
-		math.NaN(),
-	}
-	t.Parallel()
-	r := marshal(unsupportedValues[0])
-	require.Equal(t, r, "", "The code not return empty string")
+	var result string
+	assert.NotPanics(t, func() {
+		result = marshal(unsupportedValues[0])
+	}, "The code throw panic")
+	assert.Equal(t, "", result)
 }
