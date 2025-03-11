@@ -2,8 +2,8 @@ package json
 
 import (
 	"bytes"
-	"github.com/goccy/go-json"
 
+	"github.com/goccy/go-json"
 	"github.com/grafana/sobek"
 	"github.com/sirupsen/logrus"
 	"go.k6.io/k6/js/modules"
