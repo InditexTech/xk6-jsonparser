@@ -18,13 +18,15 @@ NATIVE=0 xk6 run examples/benchmark/marshal.js --duration=10s
 
 When running the k6 scripts for 30 seconds:
 
-- encoding/json:
-  - Marshal Native: 1442320 iters
-  - Marshal Extension: 1264760 iters
-  - Unmarshal Native: 1036531 iters
-  - Unmarshal Extension: 2173293 iters
-- goccy/go-json:
-  - Marshal Native: 1438728 iters
-  - Marshal Extension: 1426399 iters
-  - Unmarshal Native: 1012748 iters
-  - Unmarshal Extension: 2354553 iters
+- Native JS methods (Sobek)
+  - Marshal: 1442320 iters
+  - Unmarshal: 1036531 iters
+- Extension with encoding/json library
+  - Marshal: 1264760 iters
+  - Unmarshal: 2173293 iters
+- Extension with goccy/go-json library
+  - Marshal: 1426399 iters
+  - Unmarshal: 2354553 iters
+- Extension with bytedance/sonic library
+  - Marshal: 1560107 iters
+  - Unmarshal: 2744016 iters
