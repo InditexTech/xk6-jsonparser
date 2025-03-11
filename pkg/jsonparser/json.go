@@ -3,7 +3,7 @@ package json
 import (
 	"bytes"
 
-	"github.com/goccy/go-json"
+	"github.com/bytedance/sonic"
 	"github.com/grafana/sobek"
 	"github.com/sirupsen/logrus"
 	"go.k6.io/k6/js/modules"
@@ -31,7 +31,7 @@ func (json *JSON) Marshal(object any) sobek.Value {
 
 func unmarshal(s string) any {
 	var v any
-	err := json.Unmarshal([]byte(s), &v)
+	err := sonic.Unmarshal([]byte(s), &v)
 
 	if err != nil {
 		logger.Errorf("Error parsing JSON: %v", err)
@@ -43,7 +43,7 @@ func unmarshal(s string) any {
 
 func marshal(object any) string {
 	bf := bytes.NewBuffer([]byte{})
-	jsonEncoder := json.NewEncoder(bf)
+	jsonEncoder := sonic.ConfigDefault.NewEncoder(bf)
 	jsonEncoder.SetEscapeHTML(false)
 	err := jsonEncoder.Encode(object)
 
