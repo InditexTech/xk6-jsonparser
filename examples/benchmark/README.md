@@ -10,8 +10,6 @@ NATIVE=1 xk6 run examples/benchmark/marshal.js --duration=10s
 
 # Extension methods
 NATIVE=0 xk6 run examples/benchmark/marshal.js --duration=10s
-
-
 ```
 
 ## Results
