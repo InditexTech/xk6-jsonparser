@@ -16,9 +16,15 @@ NATIVE=0 xk6 run examples/benchmark/marshal.js --duration=10s
 
 ## Results
 
-When running the k6 scripts for 10 seconds:
+When running the k6 scripts for 30 seconds:
 
-- Marshal with Native JS: 401373 iterations
-- Marshal with Extension: 332099 iterations
-- Unmarshal with Native JS: 289598 iterations
-- Unmarshal with Extension: 597902 iterations
+- encoding/json:
+  - Marshal Native: 1442320 iters
+  - Marshal Extension: 1264760 iters
+  - Unmarshal Native: 1036531 iters
+  - Unmarshal Extension: 2173293 iters
+- goccy/go-json:
+  - Marshal Native: 1438728 iters
+  - Marshal Extension: 1426399 iters
+  - Unmarshal Native: 1012748 iters
+  - Unmarshal Extension: 2354553 iters
