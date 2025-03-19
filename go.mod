@@ -1,6 +1,6 @@
 module github.com/InditexTech/xk6-jsonparser
 
-go 1.23.3
+go 1.23.5
 
 require (
 	github.com/bytedance/sonic v1.13.1
