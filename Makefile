@@ -35,7 +35,6 @@ run: deps
 
 .PHONY: verify
 verify: format lint test run
-	@echo "Running verify..."
 
 .PHONY: test
 test:
@@ -51,7 +50,7 @@ tidy:
 .PHONY: format
 format:
 	@echo "Running go fmt..."
-	go fmt ./...
+	@go fmt ./...
 
 .PHONY: lint
 lint: deps
