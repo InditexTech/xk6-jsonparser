@@ -4,6 +4,8 @@ XK6_BINARY := $(shell command -v xk6 2> /dev/null)
 GOLANGCI_VERSION := v1.64.5
 GOLANGCI_BINARY := $(shell command -v golangci-lint 2> /dev/null)
 
+.DEFAULT_GOAL := all
+
 .PHONY: all
 all: format lint test run
 
@@ -35,7 +37,6 @@ run: deps
 
 .PHONY: verify
 verify: format lint test run
-	@echo "Running verify..."
 
 .PHONY: test
 test:
@@ -51,7 +52,7 @@ tidy:
 .PHONY: format
 format:
 	@echo "Running go fmt..."
-	go fmt ./...
+	@go fmt ./...
 
 .PHONY: lint
 lint: deps
