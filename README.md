@@ -1,28 +1,59 @@
 # xk6-jsonparser
 
-The `xk6-jsonparser` is a plugin for the k6 load testing tool that allows JSON marshal & unmarshal in Go, using the [bytedance/sonic library](https://github.com/bytedance/sonic). This provides better performance than the native JavaScript JSON methods using the underlying Sobek implementation (see the [benchmarks section](examples/benchmark/README.md) for more details).
+An extension for the k6 load testing tool that allows JSON marshal & unmarshal in Go, using the [bytedance/sonic library](https://github.com/bytedance/sonic). This provides better performance than the native JavaScript JSON methods using the underlying Sobek implementation (see the [benchmarks section](examples/benchmark/README.md) for more details).
 
 ## Install
 
-### Pre-built binaries
 
+To build a `k6` binary with this extension, first ensure you have the prerequisites:
+
+- [Go toolchain](https://go101.org/article/go-toolchain.html)
+- Git
+
+Then:
+
+1. Download [xk6](https://github.com/grafana/xk6):
 ```bash
-make run
+go install go.k6.io/xk6/cmd/xk6@latest
 ```
 
-### Build from source
+2. [Build](https://github.com/grafana/xk6#command-usage) the k6 binary:
+```bash
+xk6 build --with github.com/InditexTech/xk6-jsonparser@latest
+```
+
+Alternatively, you can build a `k6` binary with the extension from the local code, rather than from GitHub:
 
 ```bash
 make build
 ```
 
-## API
+### Development
 
-The plugin provides two methods:
+The default target in the [Makefile](Makefile) will download the dependencies, format your code, run the tests and the example.
 
-- `marshal`: convert a JavaScript object to a JSON string. When the operation fails, the output is an empty string.
-- `unmarshal`: convert a JSON string to a JavaScript object. When the operation fails, the output is a null value.
+```bash
+git clone git@github.com:InditexTech/xk6-jsonparser.git
+cd xk6-jsonparser
+make
+```
 
-### Examples
+## Usage
 
-See the [examples](./examples) folder.
+This extension provides two methods:
+
+```javascript
+import json from "k6/x/json";
+
+export default function() {
+  // Convert a JS object to a JSON string.
+  // If the operation fails, the output is an empty string.
+  const marshalResult = json.marshal({userId: 1, userName: "Lorem ipsum"});
+  
+  // Convert a JSON string to a JS object.
+  // If the operation fails, the output is a null value.
+  const unmarshalResult = json.unmarshal('{"userId": 2, "userName": "Dolor sit amet"}');
+}
+```
+
+See the [examples](./examples) folder for a more detailed usage example.
