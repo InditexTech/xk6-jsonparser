@@ -1,0 +1,31 @@
+.github/dependabot.yml
+  s_b7903e3b964109::t_b1b9d48905528e 1-20
+go.mod
+  s_b7903e3b964109::t_b553401f6df1cb 3,6,9,14-18,22,27,29,39-48,50-52,54-57
+go.sum
+  s_3cfe0ea156ca03::t_54b4efc222b6fa 5-16,30-31,44-45,49-50,59-60,66-67,103,108-111,117-136,139-140,146-147,154-155,171-172,175-176,186-193,200-201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "52dfcf52d3199a7dc60d6c3796fb50e1bceef7f3",
+  "prompts": {},
+  "sessions": {
+    "s_3cfe0ea156ca03": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fbcfbe72cffedX54QSCX1yD0r0",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Mariano Alonso Ortiz <marianoao@inditex.com>"
+    },
+    "s_b7903e3b964109": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fbcfaac4effe4yNhCSPDq5DiOV",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Mariano Alonso Ortiz <marianoao@inditex.com>"
+    }
+  }
+}
