@@ -1,0 +1,19 @@
+Makefile
+  s_07cd4a585aa912::t_585272973782a9 3-9,12,15-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2bf9caa3aec43b1c75ed8e46138c849b8dd5e38d",
+  "prompts": {},
+  "sessions": {
+    "s_07cd4a585aa912": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa1825c9-5dd1-4d06-b5a5-ab025b9ead02",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@ext.inditex.com>"
+    }
+  }
+}
