@@ -1,0 +1,23 @@
+CHANGELOG.md
+  s_5eaff9684a527e::t_0176d79df92d05 3,5-17
+Makefile
+  s_5eaff9684a527e::t_d2c6bf604e5dd9 3-6,9,12-17
+REUSE.toml
+  s_5eaff9684a527e::t_b98e4a21f5e361 17-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b1e901035e6990d2eed4a061c5052a12c4c9d410",
+  "prompts": {},
+  "sessions": {
+    "s_5eaff9684a527e": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "s_5eaff9684a527e",
+        "model": "unknown"
+      },
+      "human_author": "Copilot <223556219+Copilot@users.noreply.github.com>"
+    }
+  }
+}
