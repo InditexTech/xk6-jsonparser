@@ -1,12 +1,20 @@
 PROJECT_VERSION := 1.0.0
 
-GOPATH := $(shell command go env GOPATH)
+GOBIN := $(shell go env GOBIN)
+ifeq ($(strip $(GOBIN)),)
+GOBIN := $(shell go env GOPATH)/bin
+endif
 
 XK6_VERSION := v0.13.4
-XK6_BINARY := "$(GOPATH)/bin/xk6"
+XK6_BINARY := "$(GOBIN)/xk6"
 
 GOLANGCI_VERSION := v1.64.5
-GOLANGCI_BINARY := "$(GOPATH)/bin/golangci-lint"
+GOLANGCI_BINARY := "$(GOBIN)/golangci-lint"
+
+GO_TOOLCHAIN := $(shell go env GOVERSION 2>/dev/null | sed 's/^go//')
+ifneq ($(strip $(GO_TOOLCHAIN)),)
+export ASDF_GOLANG_VERSION := $(GO_TOOLCHAIN)
+endif
 
 .DEFAULT_GOAL := all
 
