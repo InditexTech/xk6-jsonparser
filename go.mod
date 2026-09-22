@@ -3,7 +3,7 @@ module github.com/InditexTech/xk6-jsonparser
 go 1.25.13
 
 require (
-	github.com/bytedance/sonic v1.15.3
+	github.com/bytedance/sonic v1.15.4
 	github.com/grafana/sobek v0.0.0-20260429085637-a66d4790012b
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.12.1
