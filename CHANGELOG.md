@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-05
+
 ## [1.0.0] - 2025-03-19
 
 ### Added
 
 - Initial release of the xk6-jsonparser k6 extension.
 
-[Unreleased]: https://github.com/InditexTech/xk6-jsonparser/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/InditexTech/xk6-jsonparser/compare/v1.1.0...HEAD
+
+[1.1.0]: https://github.com/InditexTech/xk6-jsonparser/compare/v1.0.0...v1.1.0
+
 [1.0.0]: https://github.com/InditexTech/xk6-jsonparser/releases/tag/v1.0.0
