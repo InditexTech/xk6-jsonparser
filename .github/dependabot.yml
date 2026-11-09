@@ -18,3 +18,20 @@ updates:
       time: "06:00"
       timezone: Europe/Madrid
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: 'InditexTech/gh-actions/*'
+      - dependency-name: 'SonarSource/sonarqube-scan-action'
+      - dependency-name: 'actions/checkout'
+      - dependency-name: 'actions/create-github-app-token'
+      - dependency-name: 'actions/download-artifact'
+      - dependency-name: 'actions/upload-artifact'
+      - dependency-name: 'asdf-vm/actions/install'
+      - dependency-name: 'fsfe/reuse-action'
+      - dependency-name: 'github/codeql-action/analyze'
+      - dependency-name: 'github/codeql-action/init'
+      - dependency-name: 'github/codeql-action/upload-sarif'
+      - dependency-name: 'newrelic/repolinter-action'
+      - dependency-name: 'ossf/scorecard-action'
+      - dependency-name: 'release-flow/keep-a-changelog-action'
+      - dependency-name: 'reviewdog/action-actionlint'
+      - dependency-name: 'webiny/action-conventional-commits'
