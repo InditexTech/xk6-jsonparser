@@ -1,0 +1,19 @@
+.sync-exclude
+  s_321a66447d8185::t_e85296c1f47458 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "83309c0a67077001e935cddf986d9ba07185474f",
+  "prompts": {},
+  "sessions": {
+    "s_321a66447d8185": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "3072a309-82b1-40ea-8573-367fb4af9c8f",
+        "model": "claude-sonnet-5.5"
+      },
+      "human_author": "Ivan Alvarez Sabin <ivanasabi@inditex.com>"
+    }
+  }
+}
